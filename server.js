@@ -20,14 +20,10 @@ db.connect((err)=>{
     console.log('Successfully connected to mysql:', db.threadId)
 })
 
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
-
 // question 1
 
 app.get('', (req, res)=> {
-
-   
+  
     const getPatients = "SELECT patient_id, first_name, last_name, date_of_birth FROM patients"
     db.query(getPatients, (err,data) =>{
         if(err){
@@ -41,6 +37,7 @@ app.get('', (req, res)=> {
 //question 2
 
     app.get('',(req, res)=>{
+
         const getProvider = "SELECT first_name, last_name, provider_specialty FROM providers"
         db.query(getProvider, (err,data) =>{
             if(err){
@@ -51,6 +48,7 @@ app.get('', (req, res)=> {
 
 
 })
+
 //Question 3
 
 app.get('',(req, res)=>{
@@ -64,11 +62,12 @@ app.get('',(req, res)=>{
 
 
 })
+
 //Question 4
 
     app.get('',(req, res)=>{
-        const getProvider = "SELECT first_name, last_name, provider_specialty FROM providers"
-        db.query(getProvider, (err,data) =>{
+        const getProviderSpecialty = "SELECT first_name, last_name, provider_specialty FROM providers"
+        db.query(getProviderSpecialty, (err,data) =>{
             if(err){
                 return res.status(400).send('Failed to get providers', err)
             }
